@@ -1,0 +1,60 @@
+<div class="main-container">
+  <div class="white-background">
+    <form [formGroup]="searchForm" (ngSubmit)="search()" novalidate #formDirective="ngForm">
+      <span class="bolder">Wyszukaj książkę:</span>
+      <mat-form-field>
+        <input matInput placeholder="Podaj tytuł książki" formControlName="title" />
+      </mat-form-field>
+      <button color="accent" [disabled]="!searchForm.valid" mat-raised-button type="submit">
+        <span>Szukaj</span>
+      </button>
+    </form>
+  </div>
+
+  <h2 *ngIf="displayRanking">Ranking TOP 10 najlepiej ocenianych książek</h2>
+  <div *ngIf="displayRanking" class="legend">
+    <img src="http://localhost/social-app/icons/activities.svg" /> Ilość powiązanych aktywności
+    <!--Icon made by srip from www.flaticon.com-->
+    <img src="http://localhost/social-app/icons/ratings.svg" /> Ilość ocen
+    <!--Icon made by Icongeek26 from www.flaticon.com-->
+    <img src="http://localhost/social-app/icons/grade.svg" /> Średnia ocena
+    <!--Icon made by Freepik from www.flaticon.com-->
+  </div>
+  <div class="ranking" *ngIf="displayRanking">
+    <mat-card class="books" *ngFor="let book of books$| async;  let i = index ">
+      <span class="bold">Miejsce {{i+1}}</span>
+      <div class="single-book">
+        Tytuł: <div class="book-title">{{ book.title }}</div>
+        <div class="book-author">
+          Autor: {{ book.author_name }} {{ book.author_surname }}
+        </div>
+
+        <div class="book-image" (click)="details(book)">
+          <span class="tooltiptext">Display book details</span>
+          <img src="{{book.photo_path}}{{book.photo_name}}" />
+        </div>
+        <br />
+        <div class="book-reactions">
+          <img src="http://localhost/social-app/icons/activities.svg" /> {{ book.activities }}
+          <!--Icon made by srip from www.flaticon.com-->
+          <img src="http://localhost/social-app/icons/ratings.svg" /> {{book.reactions}}
+          <!--Icon made by Icongeek26 from www.flaticon.com-->
+          <img src="http://localhost/social-app/icons/grade.svg" /> {{book.score}}
+          <!--Icon made by Freepik from www.flaticon.com-->
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+  <div class="search_result_panel" *ngIf="!displayRanking">
+    <button class="blue-button" (click)='ranking()'>Wróć do rankingu</button>
+    <span *ngIf="(books$ | async)?.length==0"><br />Nie znaleziono szukanej książki.</span>
+    <mat-card class="search_result" *ngFor="let book of books$ | async">
+      <div class="book-information"><span class="bold">{{ book.title
+          }}</span>&nbsp;-&nbsp;{{book.author_name}}&nbsp;{{book.author_surname}}</div>
+      <a class="blue-button_details" routerLinkActive="active-link" routerLink="/books/{{book.id}}">Szczegóły</a>
+
+    </mat-card>
+  </div>
+
+</div>

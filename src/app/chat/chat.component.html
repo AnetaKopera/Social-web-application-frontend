@@ -1,0 +1,80 @@
+<div class="chat_container">
+	<div class="list">
+		<div>
+			<button class="new-conversation" (click)="newConversation()">+</button>
+			<div class="search" *ngIf="newConversationEnabled">
+				<span>Wyszukaj znajomego</span>
+
+				<button class="close" (click)="closeSearching();">x</button>
+				<input [(ngModel)]="searchFriend">
+				<button class="search-button" (click)="newConversationSearch();"> Szukaj </button>
+				<br />
+				<div class="searchedList" *ngFor="let friend of matchingFriends$ ">
+					<div class="searchedFriend" (click)="newConversationSelected(friend.id);">
+						<div class="friend_photo">
+							<img *ngIf="friend.photo_name" src="{{friend.photo_path}}{{friend.photo_name}}" />
+							<img *ngIf="!friend.photo_name"
+								src="http://localhost/social-app/images/users/user_no_photo.png" />
+						</div>
+						<div class="friend-name">
+							{{friend.name}} {{friend.surname}}
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="conversation_partners" *ngFor="let friend of friends1$ ">
+			<div [ngClass]="{'active' : actualReceiverId == friend[0].id, 'normal': actualReceiverId != friend[0].id}"
+				(click)="conversation(friend[0].id);">
+
+				<div class="friend_photo">
+					<img *ngIf="friend[0].photo_name" src="{{friend[0].photo_path}}{{friend[0].photo_name}}" />
+					<img *ngIf="!friend[0].photo_name"
+						src="http://localhost/social-app/images/users/user_no_photo.png" />
+
+				</div>
+				<div class="friend">
+					{{friend[0].name}} {{friend[0].surname}}
+					<mat-icon *ngIf="friend[2] > 0" [matBadge]="friend[2]" matBadgeSize="medium" matBadgeOverlap="false"
+						matBadgeColor="warn"></mat-icon>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="chat-messages">
+
+		<div class="user-preview" *ngIf="actualUser">
+
+			<div class="friend_photo">
+				<img *ngIf="actualUser.photo_name" src="{{actualUser.photo_path}}{{actualUser.photo_name}}" />
+				<img *ngIf="!actualUser.photo_name" src="http://localhost/social-app/images/users/user_no_photo.png" />
+			</div>
+			<div>
+				{{actualUser.name}} {{actualUser.surname}}
+			</div>
+			<button (click)="userProfile(actualUser.id)">Zobacz profil</button>
+		</div>
+		<div #scrollMe (scroll)="onScroll()" id="message-container" class="messages-container">
+			<div *ngFor="let message of messagesWithUser$">
+				<div [ngClass]="{'sender' : message.me_sender, 'receiver': !message.me_sender}">
+					<div class="message-wraper">
+						{{message.text}}
+						<div class="message-date">
+							{{ message.send_date | date:'M-d-yyyy H:mm' }}
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div *ngIf="actualReceiverId" class="create-message">
+			<input placeholder="Napisz wiadomość..." class="create-input" (keydown.enter)="sendMessage();" type="text"
+				[(ngModel)]="message">
+			<button class="create-button" (click)="sendMessage();"> Wyślij
+			</button>
+		</div>
+	</div>
+
+</div>

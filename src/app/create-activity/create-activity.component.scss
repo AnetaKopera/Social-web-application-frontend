@@ -1,0 +1,98 @@
+.allPage{
+	padding: 20px;
+	margin: 20px;
+	background-color: #ffffff;
+	max-width: 600px;
+	position: relative;
+	margin: auto;
+	
+	.createActivity{
+		position: relative;
+		text-align: left;
+	
+		.center-wraper{
+			text-align: center;
+		}
+		.center{
+			margin: auto;
+			textarea{
+				text-align: left;
+			}
+		}
+		.right-wraper{
+			text-align: right;
+		}
+		.right-wraper-close{
+			position: absolute;
+			top:0;
+			right: 0;
+			text-align: right;
+		}
+		.bold-text{
+			font-weight: bolder;	
+		}
+		.bold-text-main{
+			font-weight: bolder;
+		}
+		.bold-text-description{
+			font-weight: bolder;
+		}
+		textarea{
+			margin-top: 20px;
+			padding: 20px;
+			border: 1px solid #000;
+			width:560px;
+			min-height: 100px;
+			max-height: 200px;
+		}
+		.red{
+			color: #b40000;
+		}
+		.blue-button{
+			background-color: #07015a;
+			padding-left: 20px;
+			padding-right: 20px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			color: #ffffff;
+			border: none;
+			border-radius: 25px;
+			outline: none;
+		}
+		.blue-button-round{
+			background-color: #07015a;
+			width: 30px;
+			height: 30px;
+			color: #ffffff;
+			border: none;
+			border-radius: 50%;
+			outline: none;
+		}		
+		option{
+			padding: 20px;
+			font-size: 15px;
+			border: none;
+			:hover{
+				background-color: grey;
+			}
+
+			:active{
+				color:#b40000;
+			}
+		}
+		
+		hr{
+			color: #B6AEAE;
+			margin-top: 20px;
+		}
+		span + mat-form-field {
+			margin-left: 60px;
+		}
+		span + #gradeMatForm{
+			margin-left: 120px;
+		}
+		mat-form-field + button {
+			margin-left: 60px;
+		}
+	}
+}

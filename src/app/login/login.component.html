@@ -1,0 +1,25 @@
+<div class="allPage">
+	<form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+		<h2>Logowanie</h2>
+		<mat-form-field>
+			<mat-label>Email</mat-label>
+			<input matInput placeholder="Wpisz swój email" formControlName="email" #firstElement />
+		</mat-form-field>
+		<p class="error" *ngIf="loginForm.controls.email.touched  && loginForm.controls.email.errors?.required">Email
+			nie może być pusty!</p>
+		<p class="error" *ngIf="loginForm.controls.email.touched  && loginForm.controls.email.errors?.email">Email ma
+			nieprawidłową formę!</p>
+		<mat-form-field>
+			<mat-label>Hasło</mat-label>
+			<input matInput type="password" placeholder="Wpisz swoje hasło" formControlName="password" />
+		</mat-form-field>
+		<p class="error" *ngIf="loginForm.controls.password.touched  && loginForm.controls.password.errors?.required">
+			Hasło nie może być puste!</p>
+		<button color="accent" [disabled]="!loginForm.valid" mat-raised-button type="submit">
+			<span>Zaloguj się</span>
+		</button>
+
+		<p class="error" *ngIf="unsuccesfullLoged">Logowanie nie powiodło się! Spróbuj ponownie</p>
+
+	</form>
+</div>

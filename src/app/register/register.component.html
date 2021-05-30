@@ -1,0 +1,57 @@
+<div class="allPage">
+	<form [formGroup]="registerForm" (ngSubmit)="signup()" novalidate>
+		<h2>Rejestracja</h2>
+		<mat-form-field>
+			<mat-label>Imię</mat-label>
+			<input matInput placeholder="Wpisz swoje imię" formControlName="name" #firstElement />
+		</mat-form-field>
+		<p class="error" *ngIf="registerForm.controls.name.touched  && registerForm.controls.name.errors?.whitespace">To
+			pole jest wymagane</p>
+		<p class="error" *ngIf="registerForm.controls.name.errors?.maxlength">Podane imie jest zbyt długie</p>
+		<br />
+		<mat-form-field>
+			<mat-label>Nazwisko</mat-label>
+			<input matInput placeholder="Wpisz swoje nazwisko" formControlName="surname" />
+		</mat-form-field>
+		<p class="error"
+			*ngIf="registerForm.controls.surname.touched  && registerForm.controls.surname.errors?.whitespace">To pole
+			jest wymagane</p>
+		<p class="error" *ngIf="registerForm.controls.surname.errors?.maxlength">Podane nazwisko jest zbyt długie</p>
+		<br />
+		<mat-form-field>
+			<mat-label>Opis twojego profilu</mat-label>
+			<textarea matInput placeholder="np. Wpisz jakie rodzaj literacki lubisz najbardziej lub co Cię inspiruje."
+				formControlName="description"></textarea>
+		</mat-form-field>
+		<p class="error" *ngIf="registerForm.controls.description.errors?.maxlength">Opis jest zbyt długi</p>
+		<br />
+		<mat-form-field>
+			<mat-label>Email</mat-label>
+			<input matInput placeholder="Wpisz poprawny format maila" formControlName="email" />
+		</mat-form-field>
+		<p class="error" *ngIf="registerForm.controls.email.touched  && registerForm.controls.email.errors?.required">To
+			pole jest wymagane</p>
+		<p class="error" *ngIf="registerForm.controls.email.touched  && registerForm.controls.email.errors?.email">
+			Format email jest niepoprawny</p>
+		<br />
+		<mat-form-field>
+			<mat-label>Hasło</mat-label>
+			<input matInput type="password" placeholder="Wpisz hasło" formControlName="password" />
+		</mat-form-field>
+		<p class="error"
+			*ngIf="registerForm.controls.password.touched  && registerForm.controls.password.errors?.tooshort">Hasło
+			musi mieć minimum 7 znaków</p>
+		<br />
+		<a href="/regulations" target="_blank">Regulamin</a>
+		<section>
+			<mat-checkbox formControlName="rules" aria-requried>* Oświadczam, że zapoznałem/am się i akceptuję regulamin
+				portalu.
+			</mat-checkbox>
+		</section>
+		<br />
+		<button color="accent" [disabled]="!registerForm.valid" mat-raised-button type="submit">
+			<span>Zarejestruj</span>
+		</button>
+		<p class="error" *ngIf="unsuccesfullRegister">Rejestracja nie powiodła się! Spróbuj ponownie</p>
+	</form>
+</div>

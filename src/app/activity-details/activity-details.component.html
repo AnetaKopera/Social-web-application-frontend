@@ -1,0 +1,144 @@
+<div class="activity-detail">
+
+	<div class="left-panel">
+		<div class="book-photo">
+			<img src="{{actualActivity.book_photo_path}}{{actualActivity.book_photo_name}}" />
+		</div>
+	</div>
+
+	<div class="right-panel">
+
+		<div class="dropdown">
+			<button button class="three_dot_main" mat-icon-button (click)="optionsVisibility = !optionsVisibility">
+				<mat-icon>more_vert</mat-icon>
+			</button>
+			<div *ngIf="optionsVisibility" class="dropdown-content">
+				<div *ngFor="let option of actualOptions$">
+					<span class="option" (click)="doOption(option[1]);">{{option[0]}}</span>
+				</div>
+			</div>
+		</div>
+
+		<button class="close" (click)="closeDetails();">x</button>
+
+		<div class="owner">
+			<div class="owner">
+				<div class="tooltip-visit_profile">
+					<div class="owner_photo" (click)="userProfile(actualActivity.owner_id)">
+						<img *ngIf="actualActivity.owner_photo_name"
+							src="{{actualActivity.owner_photo_path}}{{actualActivity.owner_photo_name}}" />
+						<img *ngIf="!actualActivity.owner_photo_name"
+							src="http://localhost/social-app/images/users/user_no_photo.png" />
+					</div>
+					<div #name_owner_width class="owner_name" (click)="userProfile(actualActivity.owner_id)">
+						{{actualActivity.owner_name}} {{actualActivity.owner_surname}}
+					</div>
+					<span class="tooltiptext-visit_profile">Odwiedź profil</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="date_visibility">
+			<div class="visibility" *ngIf="actualActivity.visibility == 'public'">
+				<img src="http://localhost/social-app/icons/public.svg" />
+				<!--Icon made by Freepik from www.flaticon.com-->
+			</div>
+			<div class="visibility" *ngIf="actualActivity.visibility == 'friends'">
+				<img src="http://localhost/social-app/icons/friends.svg" />
+				<!--Icon made by Freeplik from www.flaticon.com-->
+			</div>
+
+			<div class="date">
+				{{actualActivity.date}}
+			</div>
+		</div>
+
+		<div class="book_information" (click)="bookDetail(actualActivity.book_id)">
+			<div class="tooltip-book">
+				<div class="icon">
+					<img src="{{actualActivity.type_of_activity_icon_path}}{{actualActivity.type_of_activity_icon_name}}"
+						alt="{{actualActivity.type_of_activity_label}}" />
+					<!--Icons from www.flaticon.com-->
+				</div>
+				<span *ngIf="actualActivity.grade" class="text">{{actualActivity.type_of_activity_label}}
+					{{actualActivity.grade}}/10:</span>
+				<span *ngIf="!actualActivity.grade" class="text">{{actualActivity.type_of_activity_label}}:</span>
+				<span class="book_title">&nbsp; "{{actualActivity.book_title}}" &nbsp;
+				</span>
+				<span class="book_author">- {{actualActivity.book_author}}</span>
+				<span class="tooltiptext-book">Zobacz książkę</span>
+			</div>
+		</div>
+
+
+		<div class="description">
+			<span>{{actualActivity.description}}</span>
+		</div>
+
+		<div *ngIf="comments$.length != 0 || isLoged" class="light-text">Komentarze:</div>
+
+		<a *ngIf="!isLoged" href="/login">Zaloguj się, aby skomentować aktywność.</a>
+		<div class="user_comment_container" *ngIf="isLoged">
+			<div class="owner_photo_comment">
+				<img *ngIf="logedUserDetails.photo_name"
+					src="{{logedUserDetails.photo_path}}{{logedUserDetails.photo_name}}" />
+
+				<img *ngIf="!logedUserDetails.photo_name"
+					src="http://localhost/social-app/images/users/user_no_photo.png" />
+			</div>
+
+			<textarea class="input_comment" matInput placeholder="Dodaj swój komentarz..."
+				[(ngModel)]="user_comment"></textarea>
+			<button class="send" (click)="sendComment();">>></button>
+		</div>
+
+
+		<div class="comments">
+
+			<br />
+			<div *ngFor="let comment of comments$ ">
+				<div class="comment">
+					<div class="tooltip-visit_profile_comment">
+						<div class="owner_comment" (click)="userProfile(comment.owner_id)">
+							<div class="owner_photo_comment">
+								<img *ngIf="comment.owner_photo_name"
+									src="{{comment.owner_photo_path}}{{comment.owner_photo_name}}" />
+
+								<img *ngIf="!comment.owner_photo_name"
+									src="http://localhost/social-app/images/users/user_no_photo.png" />
+							</div>
+							<span class="tooltiptext-visit_profile_comment">Odwiedź profil</span>
+						</div>
+					</div>
+
+					<div class="user_and_date">
+						<div class="owner_name_comment" (click)="userProfile(comment.owner_id)">
+							{{comment.owner_name}}&nbsp;{{comment.owner_surname}}</div>
+						<div class="date_comment">{{comment.date}}</div>
+					</div>
+
+					<div class="text_comment">{{comment.text}}</div>
+
+					<div *ngIf="isLoged" class="dropdown_comment">
+						<button class="three_dot_comment" mat-icon-button
+							(click)="optionsClicked[comment.id]=!optionsClicked[comment.id]">
+							<mat-icon>more_vert</mat-icon>
+						</button>
+						<div *ngIf="optionsClicked[comment.id]" class="dropdown-content_comment">
+							<span class="option_comment" *ngIf="comment.owner_id==logedUserId"
+								(click)="doCommentOption('delete_comment',comment.id);">Usuń</span>
+							<span class="option_comment"
+								*ngIf="comment.owner_id!=logedUserId && actualActivity.owner_id == logedUserId"
+								(click)="doCommentOption('delete_comment',comment.id);">Usuń</span>
+							<span class="option_comment" *ngIf="comment.owner_id!=logedUserId"
+								(click)="doCommentOption('report_comment',comment.id);">Zgłoś</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+
+	</div>
+</div>

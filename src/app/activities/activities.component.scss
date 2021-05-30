@@ -1,0 +1,282 @@
+.allPage{
+	background-color: #E6E4F9;
+	padding: 20px;
+
+	.refresh-button-container{
+		.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+	}
+}
+
+.activities{
+	height: 83vh; 
+	overflow-y: scroll;
+	position: relative;
+	
+	.center-wraper{
+		margin: auto;
+		text-align: center;
+		
+		padding: 20px;
+		.blue-button{
+			background-color: #07015a;
+			padding-left: 30px;
+			padding-right: 30px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			font-weight: bolder;
+			color: #ffffff;
+			border: none;
+			border-radius: 25px;
+			outline: none;
+		}
+	}
+}
+.tooltip {
+	position: relative;
+	display: inline-block;
+}
+  
+.tooltip .tooltiptext {
+	visibility: hidden;
+	width: max-content;
+	background-color: rgb(66, 66, 66);
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px;
+	
+	position: absolute;
+	z-index: 1;
+	top: -10px;
+	left: 105%;
+}
+  
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}
+
+.tooltip-refresh {
+	position: relative;
+	display: inline-block;
+}
+  
+.tooltip-refresh .tooltiptext-refresh {
+	visibility: hidden;
+	width: max-content;
+	background-color: rgb(66, 66, 66);
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px;
+	
+	position: absolute;
+	z-index: 1;
+	top: 20px;
+	left: 80px;
+}
+  
+.tooltip-refresh:hover .tooltiptext-refresh {
+	visibility: visible;
+}
+
+.tooltip2 {
+	position: relative;
+}
+  
+.tooltip2 .tooltiptext {
+	visibility: hidden;
+	width: 120px;
+	background-color: rgb(66, 66, 66);
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 0;
+	margin-right: 100px;
+	position: absolute;
+	z-index: 1;
+	top: 30px;
+	left: 10;
+}
+  
+.tooltip2:hover .tooltiptext {
+	visibility: visible;
+}
+
+mat-card {
+	padding: 20px;
+	font-size: 15px;
+	border-bottom: 1px solid #9e9e9efd;
+	border-radius: 0%;
+	max-width: 600px;
+	margin: auto;
+	margin-bottom: 20px;
+	position: relative;
+
+	.owner{
+		position: relative;
+		padding: 20px;
+		display: inline;
+		.owner_photo{
+			float: left;
+			display: flex;
+			width: 62px;
+			height: 62px;
+			background: linear-gradient(145.3deg, #DB1041 16.41%, #7F0793 50.94%, #063376 79.55%);
+			border-radius: 50%;
+			
+			img{
+				margin: auto;
+				object-fit: cover;
+				width: 54px;
+				height: 54px;
+				border: 2px solid #ffffff;
+				border-radius: 50%;	
+			}
+		}
+
+		.owner_name{
+			margin-left: 80px;
+			margin-top: 20px;
+			font-weight: bolder;
+			width: max-content;
+		}
+		:hover{
+			cursor: pointer;
+		}
+		
+		.tooltip-visit_profile {
+			position: relative;
+			display: inline-block;
+		}
+		
+		.tooltip-visit_profile .tooltiptext-visit_profile {
+			visibility: hidden;
+			width: 120px;
+			background-color: rgb(66, 66, 66);
+			color: #fff;
+			text-align: center;
+			border-radius: 6px;
+			padding: 5px 0;
+			
+			position: absolute;
+			z-index: 1;
+			top: 10px;
+			left: 105%;
+		}
+		
+		.tooltip-visit_profile:hover .tooltiptext-visit_profile {
+			visibility: visible;
+		}
+	}
+
+
+	.date_visibility{
+		position: absolute;
+		top: 40px;
+		right: 20px;
+		text-align: right;
+		
+		.visibility{
+			margin-right: 120px;
+			img{
+				width: 20px;
+				height: 20px;
+			}
+		}
+		.date{	
+			float: right;		
+			font-weight:lighter;
+		}
+	}
+
+
+	.book_photo{
+		background: linear-gradient(180deg, #B4B3BE 0%, rgba(219, 218, 231, 0.567708) 53.11%, rgba(255, 255, 255, 0) 100%);
+		text-align: center;
+		height: 400px;
+		width: 400px;
+		margin: auto;
+		position: relative;
+		margin-top: 30px;
+
+		#image_book{
+			max-height: 400px;
+			border-left: 20px solid #ffffff;
+			border-right: 20px solid #ffffff;
+			z-index: 1;
+			
+		}
+		#image_book:hover{
+			cursor: pointer;
+			opacity: 0.5;
+			filter: alpha(opacity=40);
+		}
+		
+		.tooltip-visit_activity {
+			position: relative;
+			display: inline-block;
+		}
+		
+		.tooltip-visit_activity .tooltiptext-visit_activity {
+			visibility: hidden;
+			width: max-content;
+			background-color: #07015a;
+			color: #fff;
+			text-align: center;
+			border-radius: 6px;
+			padding: 5px;
+			
+			position: absolute;
+			z-index: 1;
+			top: 180px;
+			left: 80px;
+		}
+		
+		.tooltip-visit_activity:hover .tooltiptext-visit_activity {
+			visibility: visible;
+	
+		}
+	
+		.book_information{
+			position: absolute;
+			top: -30px;
+			left: -30px;
+			
+			
+			.icon{
+				width: 60px;
+				height: 60px;
+				background-color: white;
+				border-radius: 50%;
+				position: relative;
+				text-align: center;
+
+				img{
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					max-width: 30px;
+					max-height: 30px;
+				}
+			}
+			
+		}
+		
+	}
+	.tooltip-visit_activity:hover{
+		
+		cursor: pointer;
+		#image_book{
+		opacity: 0.5;
+		filter: alpha(opacity=40);}
+	}
+
+	.description{
+		margin: auto;
+		padding:20px;
+		.multiline{
+			white-space:pre-wrap;
+		}
+	}
+}

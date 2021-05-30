@@ -1,0 +1,96 @@
+<div class="allPage">
+	<div *ngIf="user" class="user">
+		<div class="user_photo">
+			<img *ngIf="user.photo_name" src="{{user.photo_path}}{{user.photo_name}}" />
+
+			<img *ngIf="!user.photo_name" src="http://localhost/social-app/images/users/user_no_photo.png" />
+		</div>
+		<div class="user_name">
+			{{user.name}} {{user.surname}}
+		</div>
+		<div class="user_description">
+			{{user.description}}
+		</div>
+
+		<div *ngIf="!myProfile">
+			<button class="blue-button" *ngIf=" this.action == 'friend'" (click)="deleteFromFriends(user.id)">Usuń ze
+				znajomych</button>
+			<button class="blue-button" *ngIf=" this.action == 'invitedMe'" (click)="acceptInvitation(user)">Akceptuj
+				zaproszenie</button>
+			<button class="blue-button" *ngIf=" this.action == 'invitedMe'" (click)="declineInvitation(user.id)">Odrzuć
+				zaproszenie</button>
+			<button class="blue-button" *ngIf=" this.action == 'iInvited'" (click)="cancelInvitation(user.id)">Anuluj
+				zaproszenie</button>
+			<button class="blue-button" *ngIf=" this.action == 'stranger'" (click)="invite(user)">Zaproś</button>
+		</div>
+
+		<div class="user_menu" *ngIf="myProfile">
+			<div [ngClass]="{'active' : actualTab == 'activities', 'normal': actualTab != 'activities'}"
+				(click)="showActivities();">Aktywności</div>
+			<div [ngClass]="{'active' : actualTab == 'newActivity', 'normal': actualTab != 'newActivity'}"
+				(click)="createActivity();">Dodaj aktywność</div>
+			<div [ngClass]="{'active' : actualTab == 'friends', 'normal': actualTab != 'friends'}"
+				(click)="showFriends();">Znajomi
+				<mat-icon *ngIf="unreadedInvitations != 0" [matBadge]="unreadedInvitations" matBadgeSize="medium"
+					matBadgeOverlap="true" matBadgeColor="warn"></mat-icon>
+			</div>
+			<div [ngClass]="{'active' : actualTab == 'editUserProfile', 'normal': actualTab != 'editUserProfile'}"
+				(click)="showEditProfile();">Edytuj profil</div>
+			<div [ngClass]="{'active' : actualTab == 'settings', 'normal': actualTab != 'settings'}"
+				(click)="showDeleteAccount();">Ustawienia</div>
+		</div>
+
+
+	</div>
+
+	<div class="main-container">
+		<div *ngIf="actualTab == 'friends'">
+			<app-friends></app-friends>
+		</div>
+		<div *ngIf="actualTab == 'editUserProfile'">
+			<app-edit-profile [user]="user" (closeEditUserProfile)="closeEditProfile();"></app-edit-profile>
+		</div>
+		<div class="settings" *ngIf="actualTab == 'settings'">
+			<div class="border">
+				<h3>Regulamin</h3>
+				<a href="/regulations" target="_blank">Regulamin</a>
+			</div>
+			<br />
+			<div class="border">
+				<h3>Usuwanie konta</h3>
+				<div class="text-danger">
+					{{deleteText}}
+				</div>
+				<button class="blue-button" (click)="deleteMyAccount();">Usuń moje konto</button>
+			</div>
+
+		</div>
+
+
+		<div *ngIf="actualTab == 'activities'" class="activities">
+			<div class="activity" (click)="activityDetails(activity)" *ngFor="let activity of activities">
+				<div class="book_photo">
+					<img id="image_book" src="{{activity.book_photo_path}}{{activity.book_photo_name}}" />
+
+					<div class="book_information">
+						<div class="icon">
+							<img id="image_book"
+								src="{{activity.type_of_activity_icon_path}}{{activity.type_of_activity_icon_name}}"
+								alt="{{activity.type_of_activity_label}}" />
+							<!--Icons from www.flaticon.com-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="center" *ngIf="actualTab == 'newActivity'">
+			<app-create-activity [closeButton]="false" (refresh)="createdPost($event);" (close)="activityForm=false;">
+			</app-create-activity>
+		</div>
+
+	</div>
+
+</div>
+<app-activity-details *ngIf="activityDetailsInformation"  [goToActivity]="true"  [activity]="actualActivity"
+	(closeActivityDetails)="closeDetails();" (closerefreshActivityDetails)="refresh(); closeDetails();"> </app-activity-details>

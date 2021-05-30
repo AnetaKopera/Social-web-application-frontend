@@ -1,0 +1,4 @@
+<div *ngIf="activity">
+	<app-activity-details [activity]="activity" (closeActivityDetails)="closeDetails();"
+		(closerefreshActivityDetails)="closeDetails();"></app-activity-details>
+</div>

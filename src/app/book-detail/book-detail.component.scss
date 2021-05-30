@@ -1,0 +1,56 @@
+.allPage{
+	padding: 20px;
+	background-color: #E6E4F9;
+	position: relative;
+	height: 89vh;
+	.close{
+		position: absolute;
+		
+		top: 35px;
+		right: 40px;
+		z-index: 1;
+		background-color: #07015a;
+		width: 30px;
+		height: 30px;
+		color: #ffffff;
+		border: none;
+		border-radius: 50%;
+		outline: none;
+	}
+	.book-detail{
+		
+		position: relative;
+		display: flex;
+		margin:auto;
+		margin-top: 60px;
+		width: 80%;
+		.photo{
+			padding: 20px;
+			float: left;
+			border: 2px solid rgb(139, 139, 139);
+			background-color: white;
+			height:80%;
+			flex: 1;
+			position: relative;
+			margin: auto;
+			text-align: center;
+			img{
+				margin: auto;
+				max-height: 400px;
+			}	
+		}
+		.details{
+			padding: 20px;
+			flex: 1;
+			background-color: rgb(121, 213, 216);
+			.book-reactions{
+				font-weight: bold;
+				img{
+					max-width: 30px;
+					max-height: 20px;
+				}
+			}
+		}
+		
+	}
+}

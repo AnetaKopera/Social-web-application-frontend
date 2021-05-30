@@ -1,0 +1,153 @@
+.main-container{	
+	background-color: #E6E4F9;
+	text-align: center;
+	position: relative;
+	padding: 20px;
+	position: relative;
+	height: 89vh;
+	.white-background{
+		margin: auto;
+		background-color: #fff;
+		width: max-content;
+		padding: 0px 10px 0px 10px;
+	}
+	.white-background + .legend{
+		margin-top: 20px;
+	}
+	.legend{
+		margin-bottom: 20px;
+		img{
+			max-width: 30px;
+			max-height: 20px;
+		}
+	}
+
+	a{
+		text-decoration: none;
+		color: white;
+	}
+	
+	.bolder{
+		font-size:larger;
+	}
+	.bolder + mat-form-field{
+		margin-left: 20px;
+	}
+	.bold{
+		font-weight: bold;
+	}
+	.blue-button{
+		background-color: #07015a;
+		padding-left: 30px;
+		padding-right: 30px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		font-weight: bolder;
+		color: #ffffff;
+		border: none;
+		border-radius: 25px;
+		outline: none;
+	
+	}
+	.blue-button:hover{
+		cursor: pointer;
+	}
+	
+	.books {
+		padding: 20px;
+		font-size: 15px;
+		width:500px;
+		height: max-content;
+		border-bottom: 1px solid #9e9e9efd;
+		position: relative;
+		margin: auto;
+		border-radius: 0%;
+		margin-bottom: 20px;
+			
+
+		.single-book{
+			
+			.book-title {
+				display: inline-block;
+				font-weight: bold;
+			}
+			
+			.book-image{
+				margin: auto;
+				background-color: white;
+				padding: 10px;
+				text-align: center;
+				overflow: hidden;
+				max-height: 400px;
+				.tooltiptext{
+					visibility: hidden;
+					width: 200px;
+					background-color: black;
+					color: #fff;
+					text-align: center;
+					border-radius: 6px;
+					padding: 5px 0;
+					position: absolute;
+					z-index: 1;
+				}
+				
+				img{
+					width: 400px;
+				}
+				:hover{
+					cursor: pointer;
+					.tooltiptext{
+						visibility: visible;
+					}
+				}
+
+			}
+			.book-reactions{
+				font-weight: bold;
+				img{
+					max-width: 30px;
+					max-height: 20px;
+				}
+			}
+		}
+		
+	}
+
+	.search_result{
+		margin: auto;
+		margin-top: 20px;
+		position: relative;
+		height: max-content;
+		padding: 20px;
+		width:500px;
+		vertical-align: middle;
+		display: flex;
+		align-items: center; 
+		
+		.blue-button_details{
+			position: absolute;
+			top:50%;
+			right: 10px;
+			background-color: #07015a;
+			padding: 10px;
+			color: #ffffff;
+			border: none;
+			border-radius: 25px;
+			outline: none;
+			transform: translateY(-50%);
+		
+		}
+		.blue-button_details:hover{
+			cursor: pointer;
+		}
+	}
+}
+
+.ranking{
+	overflow-y: scroll;
+	height: 74vh;
+}
+
+.white-background + .search_result_panel{
+	margin-top: 20px;
+ }

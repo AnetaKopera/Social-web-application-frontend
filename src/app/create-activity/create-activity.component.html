@@ -1,0 +1,101 @@
+<div class="allPage">
+	<div class="createActivity">
+		<div *ngIf="closeButton" class="right-wraper-close">
+			<button class="blue-button-round" (click)="closeComponent()">x</button>
+		</div>
+		<div class="center-wraper">
+			<span class="bold-text-main">Dodaj aktywność</span>
+		</div>
+		<hr>
+		<div class="book">
+			<span class="bold-text">Książka</span>
+			<div class="center-wraper">
+				<form [formGroup]="searchForm" (ngSubmit)="search()" novalidate>
+					<mat-form-field>
+						<input matInput placeholder="Podaj tytuł książki" formControlName="title" />
+					</mat-form-field>
+					<button color="accent" [disabled]="!searchForm.valid" mat-raised-button type="submit">
+						<span>Szukaj</span>
+					</button>
+				</form>
+
+				<div *ngIf="chooseBookList && !((books$ | async)?.length == 0)">
+					<span>Wybierz pozycję z listy:</span>
+					<mat-form-field appearance="fill">
+						<mat-label>Książka</mat-label>
+						<mat-select [(ngModel)]="selectedBook" required>
+							<mat-option *ngFor="let book of books$  | async" [value]="book"
+								style="height: unset; white-space: normal; text-align: center;">
+								"{{book.title}}" - {{book.author_name}} {{book.author_surname}}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+				<div *ngIf="chooseBookList && ((books$ | async)?.length == 0) ">
+					<span class="red">Nie odnaleziono podanej książki!</span>
+					<br />
+				</div>
+			</div>
+
+		</div>
+
+		<div class="type_of_activity">
+			<span class="bold-text">Rodzaj aktywności</span> <br />
+			<div class="center-wraper">
+				<span>Wybierz pozycję z listy:</span>
+				<mat-form-field appearance="fill">
+					<mat-label>Rodzaj aktywności</mat-label>
+					<mat-select [(ngModel)]="selectedTypeOfActivity" required>
+						<mat-option *ngFor="let activity_type of activityTypes$  | async" [value]="activity_type">
+							{{activity_type.label}}
+						</mat-option>
+					</mat-select>
+				</mat-form-field>
+				<div *ngIf="selectedTypeOfActivity != null && selectedTypeOfActivity.label == 'Oceniono'">
+					<span>Dodaj ocenę:</span>
+					<mat-form-field id="gradeMatForm" appearance="fill">
+						<mat-label>Ocena</mat-label>
+						<mat-select [(ngModel)]="selectedGrade" required>
+							<mat-option *ngFor="let grade of grades$ " [value]="grade">
+								{{grade}}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+			</div>
+		</div>
+
+		<div class="visibility">
+			<span class="bold-text">Widoczność aktywności</span> <br />
+
+			<div class="center-wraper">
+				<span>Wybierz pozycję z listy:</span>
+				<mat-form-field appearance="fill">
+					<mat-label>Widoczność</mat-label>
+					<mat-select [(ngModel)]="selectedVisibility" required>
+						<mat-option *ngFor="let visibility of visibilities$ " [value]="visibility[0]">
+							{{visibility[1]}}
+						</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+		</div>
+
+		<div class="description">
+			<span class="bold-text-description">Opis</span>
+
+			<div class="center">
+				<textarea matInput placeholder="Dodaj opis dla aktywności..." [(ngModel)]="activity_text"></textarea>
+			</div>
+		</div>
+		<br />
+		<div class="right-wraper">
+			<button class="blue-button" (click)="createPost();">Stwórz aktywność</button>
+		</div>
+
+		<div class="center-wraper" *ngIf="errors">
+			<span class="red">Uzupełnij wszystkie pola by stworzyć aktywność!</span>
+		</div>
+	</div>
+
+</div>

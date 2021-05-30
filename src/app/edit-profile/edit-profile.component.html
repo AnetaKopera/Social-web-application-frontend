@@ -1,0 +1,127 @@
+<div class="allPage">
+	<div class="editProfile">
+		<div class="center-wraper">
+			<span class="bold-text-main">Zmień profil</span>
+		</div>
+		<hr>
+
+		<div class="personal-data">
+			<span class="bold-text">Dane osobiste</span>
+			<div class="left-wraper">
+
+				<div class="row">
+					<mat-label>Imię:</mat-label>
+					<input matInput placeholder="{{user.name}}" [(ngModel)]="name" />
+				</div>
+
+				<div class="row">
+					<mat-label>Nazwisko:</mat-label>
+					<input matInput placeholder="{{user.surname}}" [(ngModel)]="surname" />
+					<button class="blue-button" (click)="changePersonalData();" id="personal-data-button">Zmień</button>
+				</div>
+
+				<div *ngIf="error_personal_data">
+					<span class="red">Zmiana nie powiodła się!</span>
+					<br />
+				</div>
+			</div>
+
+		</div>
+
+		<div class="email">
+			<span class="bold-text">Email</span>
+			<div class="left-wraper">
+
+				<div [formGroup]="email_form" class="row">
+					<mat-label>Email:</mat-label>
+					<input matInput placeholder="{{user.email}}" formControlName="email" />
+					<button class="blue-button" (click)="changeEmail();" id="email-button">Zmień</button>
+				</div>
+
+
+				<div *ngIf="error_email">
+					<span class="red">Zmiana nie powiodła się!</span>
+					<br />
+				</div>
+			</div>
+
+		</div>
+
+		<div class="password">
+			<span class="bold-text">Hasło</span>
+			<div class="left-wraper">
+
+				<div class="row">
+					<mat-label>Obecne hasło:</mat-label>
+					<input type="password" matInput [(ngModel)]="password_old" />
+				</div>
+
+				<div class="row">
+					<mat-label>Nowe hasło:</mat-label>
+					<input type="password" [(ngModel)]="password_new" />
+					<button class="blue-button" (click)="changePassword();" id="password-button">Zmień</button>
+				</div>
+
+
+				<div *ngIf="error_password">
+					<span class="red">Zmiana nie powiodła się!</span>
+					<br />
+				</div>
+			</div>
+
+		</div>
+
+		<div class="picture">
+			<span class="bold-text">Zdjęcie</span>
+			<div class="left-wraper">
+
+				<div class="row">
+					<div class="user-picture">
+						<img *ngIf="user.photo_name" src="{{user.photo_path}}{{user.photo_name}}" />
+						<img *ngIf="!user.photo_name" src="http://localhost/social-app/images/users/user_no_photo.png">
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<button class="blue-button" (click)="deletePicture();" id="picture-delete-button">Usuń</button>
+				</div>
+				<div class="row">
+					<label class="image-upload-container">
+						<span>Wybierz nowe zdjęcie: </span>
+						<input #image type="file" accept="image/*" (change)="selectImage($event)">
+					</label>
+					<button class="blue-button" (click)="changePicture();" id="picture-edit-button">Zmień</button>
+				</div>
+
+				<div *ngIf="error_picture_edit">
+					<span class="red">Usunięcie nie powiodło się!</span>
+					<br />
+				</div>
+				<div *ngIf="error_picture_delete">
+					<span class="red">Zmiana nie powiodła się!</span>
+					<br />
+				</div>
+			</div>
+
+		</div>
+
+		<div class="description">
+			<span class="bold-text">Opis</span>
+			<div>
+				<div class="row">
+					<textarea matInput placeholder="{{user.description}}" [(ngModel)]="description"></textarea>
+				</div>
+			</div>
+
+			<button class="blue-button" (click)="deleteDescription();" id="delete-description-button">Usuń</button>
+			<button class="blue-button" (click)="changeDescription();" id="description-button">Zmień</button>
+			<div *ngIf="error_description">
+				<span class="red">Zmiana nie powiodła się!</span>
+				<br />
+			</div>
+		</div>
+		<br />
+
+	</div>
+
+</div>

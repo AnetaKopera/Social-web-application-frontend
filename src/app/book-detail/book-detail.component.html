@@ -1,0 +1,31 @@
+<div class="allPage" *ngIf="book">
+	<button class="close" (click)="goBack()">x</button>
+	<div class="book-detail">
+		<div class="photo">
+			<img src="{{book.photo_path}}{{book.photo_name}}" />
+		</div>
+		<div class="details">
+			<div class="book-title">
+				Tytuł: {{ book.title }}
+			</div>
+			<div class="book-author">
+				Autor: {{ book.author_name }} {{ book.author_surname }}
+			</div>
+			<div>
+				Data pierwszej publikacji: {{ book.publication_date | date:'MM-dd-yyyy' }}
+			</div>
+			<div class="book-description">
+				Opis: {{ book.description }}
+			</div>
+			<div class="book-reactions">
+				<img src="http://localhost/social-app/icons/activities.svg" /> {{ book.activities }}
+				<!--Icon made by srip from www.flaticon.com-->
+				<img src="http://localhost/social-app/icons/ratings.svg" /> {{book.reactions}}
+				<!--Icon made by Icongeek26 from www.flaticon.com-->
+				<img src="http://localhost/social-app/icons/grade.svg" /> {{book.score}}
+				<!--Icon made by Freepik from www.flaticon.com-->
+			</div>
+		</div>
+	</div>
+
+</div>

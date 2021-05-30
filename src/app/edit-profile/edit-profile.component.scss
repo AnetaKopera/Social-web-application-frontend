@@ -1,0 +1,141 @@
+.allPage{
+	
+    height: 60vh;            
+    position: relative;
+	padding: 20px;
+	margin-bottom: 20px;
+	background-color: #ffffff;
+	overflow-y: scroll;
+	
+	.editProfile{
+		width:max-content;
+		margin: auto;
+		position: relative;
+		text-align: left;
+		height: 100%;
+	
+		.center-wraper{
+			text-align: center;
+		}
+		.center{
+			margin: auto;
+		}
+		.right-wraper{
+			text-align: right;
+		}
+		.right-wraper-close{
+			position: absolute;
+			top:0;
+			right: 0;
+			text-align: right;
+		}
+		.left-wraper{
+			margin: auto;
+			margin-top:20px;
+			margin-bottom: 20px;
+			position: relative;
+			
+			.row{
+				margin: auto;
+				height: max-content;
+				
+				input[type=file]{
+					margin-right: 20px;
+				}
+
+				#picture-delete-button{
+					margin-left: 20px;
+				}
+				
+				.user-picture{
+					float: left;
+					display: flex;
+					width: 62px;
+					height: 62px;
+					background: linear-gradient(145.3deg, #DB1041 16.41%, #7F0793 50.94%, #063376 79.55%);
+					border-radius: 50%;
+					
+					img{
+						margin: auto;
+						object-fit: cover;
+						width: 54px;
+						height: 54px;
+						border: 2px solid #ffffff;
+						border-radius: 50%;	
+					}
+				}
+			
+			}
+		}
+		input{
+			
+			padding-left: 10px;
+			padding-right: 10px;
+			border: 1px solid #000;
+			width: 180px;
+			min-width: max-content;
+		}
+		.bold-text{
+			font-weight: bolder;	
+		}
+		.bold-text-main{
+			font-weight: bolder;
+		}
+		.bold-text-description{
+			font-weight: bolder;
+		}
+		textarea{
+			margin-top: 20px;
+			padding: 20px;
+			border: 1px solid #000;
+			width:560px;
+			min-height: 100px;
+			max-height: 200px;
+		}
+		.red{
+			color: #b40000;
+		}
+		.blue-button{
+			background-color: #07015a;
+			padding-left: 20px;
+			padding-right: 20px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			color: #ffffff;
+			border: none;
+			border-radius: 25px;
+			outline: none;
+		}
+		.blue-button-round{
+			background-color: #07015a;
+			width: 30px;
+			height: 30px;
+			color: #ffffff;
+			border: none;
+			border-radius: 50%;
+			outline: none;
+		}		
+			
+		hr{
+			color: #B6AEAE;
+			margin-top: 20px;
+		}
+
+		input + button{
+			margin-left: 20px;
+		}
+		mat-label + input{
+			margin-left: 20px;
+		}
+		button + button{
+			margin-left: 20px;
+		}
+		.row + .row{
+			margin-top: 20px;
+		}
+	}
+	textarea{				
+		height: 300px;
+		resize: none;
+	}
+}

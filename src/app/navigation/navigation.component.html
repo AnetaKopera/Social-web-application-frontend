@@ -1,0 +1,52 @@
+<mat-toolbar>
+	<div class="menu">
+		<span>
+			<a routerLink="/activities">
+				<span>
+					<img src="http://localhost/social-app/icons/home.svg" />
+					<!--Orginal icon made by Freepik from www.flaticon.com, modfified by Aneta Kopera-->
+				</span>
+			</a>
+			<a routerLinkActive="active-link" routerLink="/books">
+				<span><img src="http://localhost/social-app/icons/book_zone.svg" />
+					<!--Orginal icon made by Freepik from www.flaticon.com, modfified by Aneta Kopera-->
+				</span>
+			</a>
+			<a *ngIf="isLoged" routerLinkActive="active-link" routerLink="/chat">
+				<span>
+
+					<img src="http://localhost/social-app/icons/conversations.svg" />
+					<!--Orginal icon made by Pixel perfect from www.flaticon.com, modfified by Aneta Kopera-->
+					<mat-icon *ngIf="unreadedMessages != 0" [matBadge]="unreadedMessages" matBadgeSize="medium"
+						matBadgeOverlap="true" matBadgeColor="warn"></mat-icon>
+				</span>
+			</a>
+
+			<a id="my_profile" *ngIf="isLoged" routerLinkActive="active-link" routerLink="/{{myProfileHref}}">
+				<span>
+					<img src="http://localhost/social-app/icons/user_profile.svg" />
+					<!--Orginal icon made by Freepik from www.flaticon.com, modfified by Aneta Kopera-->
+					<mat-icon *ngIf="unreadedInvitations != 0" [matBadge]="unreadedInvitations" matBadgeSize="medium"
+						matBadgeOverlap="true" matBadgeColor="warn"></mat-icon>
+				</span>
+
+			</a>
+			<a *ngIf="isLoged" (click)="logout()" routerLinkActive="active-link" routerLink="/logout">
+				<span><img src="http://localhost/social-app/icons/logout.svg" /></span>
+				<!--Orginal icon made by Pixel perfect from www.flaticon.com, modfified by Aneta Kopera-->
+			</a>
+			<a *ngIf="!isLoged" routerLinkActive="active-link" routerLink="/login">
+				<span><img src="http://localhost/social-app/icons/login.svg" /></span>
+				<!--Orginal icon made by Pixel perfect from www.flaticon.com, modfified by Aneta Kopera-->
+			</a>
+			<a *ngIf="!isLoged" routerLinkActive="active-link" routerLink="/register">
+				<!--Orginal icon made by Freepik from www.flaticon.com, modfified by Aneta Kopera-->
+				<span><img src="http://localhost/social-app/icons/register.svg" /></span>
+			</a>
+		</span>
+		<span>
+
+		</span>
+	</div>
+
+</mat-toolbar>

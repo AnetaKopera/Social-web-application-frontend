@@ -1,0 +1,13 @@
+.allPage{
+	padding: 20px;
+	position: relative;
+	.text{
+		border: 1px solid #000;
+		border-radius: 5px;
+		padding: 20px;
+		margin: auto;
+		text-align:justify; 
+		width:60%;
+		overflow-wrap: break-word;
+	}
+}

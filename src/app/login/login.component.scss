@@ -1,0 +1,23 @@
+:host ::ng-deep .allPage{
+	padding: 20px;
+	position: relative;
+	
+	form {
+		margin: auto;
+		max-width: 800px;
+		min-width: 200px;
+		mat-form-field{
+			width:100%;
+		}
+	}
+
+	button {
+		width: 200px;
+	}
+	
+	.error{
+		color: rgb(192, 11, 11);
+	}
+}
+
+ 

@@ -1,0 +1,90 @@
+<div class="allPage">
+
+  <div class="refresh-button-container">
+    <div class="tooltip-refresh">
+      <button (click)="refresh();" mat-fab>
+        <mat-icon class="material-icons md-light">refresh</mat-icon>
+      </button>
+      <span class="tooltiptext-refresh">Nowe aktywności</span>
+    </div>
+  </div>
+
+  <div #scroll class="activities">
+    <div class="center-wraper">
+      <button class="blue-button" *ngIf="isLoged && !activityForm" (click)="createActivityForm();">Dodaj
+        aktywność</button>
+      <div *ngIf="activityForm">
+        <app-create-activity [closeButton]="true" (refresh)="createdPost($event);" (close)="activityForm=false;">
+        </app-create-activity>
+      </div>
+    </div>
+
+    <mat-card *ngFor="let activity of activities$ ">
+
+      <div class="single-activity">
+        <div class="owner">
+          <div class="tooltip-visit_profile">
+            <div class="owner_photo" (click)="userProfile(activity.owner_id)">
+              <img *ngIf="activity.owner_photo_name" src="{{activity.owner_photo_path}}{{activity.owner_photo_name}}" />
+              <img *ngIf="!activity.owner_photo_name"
+                src="http://localhost/social-app/images/users/user_no_photo.png" />
+            </div>
+            <div class="owner_name" (click)="userProfile(activity.owner_id)">
+              {{activity.owner_name}} {{activity.owner_surname}}
+            </div>
+            <span class="tooltiptext-visit_profile">Odwiedź profil</span>
+
+          </div>
+        </div>
+
+        <div class="date_visibility">
+          <div class="date">
+            {{activity.date}}
+          </div>
+          <div class="tooltip2">
+            <div class="visibility" *ngIf="activity.visibility == 'public'">
+              <img src="http://localhost/social-app/icons/public.svg" />
+              <!--Icon made by Freepik from www.flaticon.com-->
+              <span class="tooltiptext">Publiczne</span>
+            </div>
+            <div class="visibility" *ngIf="activity.visibility == 'friends'">
+              <img src="http://localhost/social-app/icons/friends.svg" />
+              <!--Icon made by Freepik from www.flaticon.com-->
+              <span class="tooltiptext">Znajomi</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="description">
+          <div class="multiline">{{activity.description}}</div>
+        </div>
+
+        <div class="book_photo">
+          <div class="tooltip-visit_activity" (click)="activityDetails(activity)">
+            <img id="image_book" src="{{activity.book_photo_path}}{{activity.book_photo_name}}" />
+            <span class="tooltiptext-visit_activity">Zobacz aktywność</span>
+          </div>
+
+          <div class="book_information">
+            <div class="tooltip">
+              <span *ngIf="activity.grade" class="tooltiptext">{{activity.type_of_activity_label}}
+                {{activity.grade}}/10</span>
+              <span *ngIf="!activity.grade" class="tooltiptext">{{activity.type_of_activity_label}}</span>
+              <div class="icon">
+                <img src="{{activity.type_of_activity_icon_path}}{{activity.type_of_activity_icon_name}}"
+                  alt="{{activity.type_of_activity_label}}" />
+                <!--Icons from www.flaticon.com-->
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </mat-card>
+
+  </div>
+</div>
+
+<app-activity-details *ngIf="activityDetailsInformation" [goToActivity]="true" [activity]="actualActivity"
+  (closeActivityDetails)="closeDetails();" (closerefreshActivityDetails)="refresh(); closeDetails();">
+</app-activity-details>

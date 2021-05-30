@@ -1,0 +1,156 @@
+<div class="allPage">
+
+	<div class="user_menu">
+		<div [ngClass]="{'active' : actualTab == 'allFriends', 'normal': actualTab != 'allFriends'}"
+			(click)="getFriendsList();">Wszyscy znajomi</div>
+		<div [ngClass]="{'active' : actualTab == 'allInvitations', 'normal': actualTab != 'allInvitations'}"
+			(click)="getInvitationsList();">Zaproszenia do znajomych
+			<mat-icon *ngIf="unreadedInvitations != 0" [matBadge]="unreadedInvitations" matBadgeSize="medium"
+				matBadgeOverlap="true" matBadgeColor="warn"></mat-icon>
+		</div>
+		<div [ngClass]="{'active' : actualTab == 'allIInvitedList', 'normal': actualTab != 'allIInvitedList'}"
+			(click)="getIInvitedList();">Wysłane zaproszenia</div>
+		<div [ngClass]="{'active' : actualTab == 'getNewFriends', 'normal': actualTab != 'getNewFriends'}"
+			(click)="getNewFriends();">Szukaj znajomych</div>
+	</div>
+
+	<br />
+
+	<div *ngIf="actualTab == 'allFriends'">
+		<div class="search">
+			<form [formGroup]="searchForm" (ngSubmit)="search()" novalidate #formDirective="ngForm">
+				<mat-form-field>
+					<input matInput placeholder="Znajdź znajomego" formControlName="friend_name" />
+				</mat-form-field>
+				<button color="accent" [disabled]="!searchForm.valid" mat-raised-button type="submit">
+					<span>Szukaj</span>
+				</button>
+			</form>
+		</div>
+		<div *ngIf="active_search">
+			<button class="blue-button" (click)="closeSearching();">Zamknij wyniki wyszukiwania</button>
+		</div>
+		<div *ngIf="searchResult  == 0 && active_search">Nie znaleziono znajomego pasującego do wyszukiwania</div>
+		<div *ngIf="searchResult.length && active_search" class="friends">
+			<div *ngFor="let friend of searchResult ">
+				<div class="friend">
+					<div class="friend_photo">
+						<img *ngIf="friend.photo_path" src="{{friend.photo_path}}{{friend.photo_name}}" />
+						<img *ngIf="!friend.photo_path"
+							src="http://localhost/social-app/images/users/user_no_photo.png" />
+					</div>
+					<div class="friend_name">
+						{{friend.name}} {{friend.surname}}
+					</div>
+					<div class="decision">
+						<button class="decision-button" (click)="userProfile(friend.id)">Zobacz profil</button>
+						<button class="decision-button" (click)="deleteFromFriends(friend.id);">Usuń ze
+							znajomych</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div *ngIf="!active_search" class="friends">
+			<div *ngFor="let friend of peoplesAlfabetically ">
+				<div class="friend">
+					<div class="friend_photo">
+						<img *ngIf="friend.photo_path" src="{{friend.photo_path}}{{friend.photo_name}}" />
+						<img *ngIf="!friend.photo_path"
+							src="http://localhost/social-app/images/users/user_no_photo.png" />
+					</div>
+					<div class="friend_name">
+						{{friend.name}} {{friend.surname}}
+					</div>
+					<div class="decision">
+						<button class="decision-button" (click)="userProfile(friend.id)">Zobacz profil</button>
+						<button class="decision-button" (click)="deleteFromFriends(friend.id);">Usuń ze
+							znajomych</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div *ngIf="actualTab == 'allInvitations'">
+		<span>Zaproszenia do znajomych</span>
+		<div class="friends">
+			<div *ngFor="let friend of peoplesAlfabetically ">
+				<div class="friend">
+					<div class="friend_photo">
+						<img *ngIf="friend.photo_path" src="{{friend.photo_path}}{{friend.photo_name}}" />
+						<img *ngIf="!friend.photo_path"
+							src="http://localhost/social-app/images/users/user_no_photo.png" />
+					</div>
+					<div class="friend_name">
+						{{friend.name}} {{friend.surname}}
+					</div>
+					<div class="decision">
+						<button class="decision-button" (click)="acceptInvitation(friend);">Akceptuj</button>
+						<button class="decision-button" (click)="declineInvitation(friend.id_sender);">Odrzuć</button>
+						<button class="decision-button" (click)="userProfile(friend.id_sender);">Zobacz profil</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div *ngIf="actualTab == 'allIInvitedList'">
+		<span>Zaproszenia oczekujące na odpowiedź</span>
+		<div class="friends">
+			<div *ngFor="let friend of peoplesAlfabetically ">
+				<div class="friend">
+					<div class="friend_photo">
+						<img *ngIf="friend.photo_path" src="{{friend.photo_path}}{{friend.photo_name}}" />
+						<img *ngIf="!friend.photo_path"
+							src="http://localhost/social-app/images/users/user_no_photo.png" />
+					</div>
+					<div class="friend_name">
+						{{friend.name}} {{friend.surname}}
+					</div>
+					<div class="decision">
+						<button class="decision-button" (click)="cancelInvitation(friend.id_receiver);">Anuluj
+							zaproszenie</button>
+						<button class="decision-button" (click)="userProfile(friend.id_receiver);">Zobacz
+							profil</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div>
+		<div *ngIf="actualTab == 'getNewFriends'">
+			<div class="search">
+				<form [formGroup]="searchStrangerForm" (ngSubmit)="searchStranger()" novalidate
+					#searchStrangerFormDirective="ngForm">
+					<mat-form-field>
+						<input matInput placeholder="Znajdź osobę" formControlName="stranger_name" />
+					</mat-form-field>
+					<button color="accent" [disabled]="!searchStrangerForm.valid" mat-raised-button type="submit">
+						<span>Szukaj</span>
+					</button>
+				</form>
+			</div>
+
+			<div class="friends">
+				<div *ngFor="let friend of searchStrangerResult">
+					<div class="friend">
+						<div class="friend_photo">
+							<img *ngIf="friend.photo_path" src="{{friend.photo_path}}{{friend.photo_name}}" />
+							<img *ngIf="!friend.photo_path"
+								src="http://localhost/social-app/images/users/user_no_photo.png" />
+						</div>
+						<div class="friend_name">
+							{{friend.name}} {{friend.surname}}
+						</div>
+						<div class="decision">
+							<button class="decision-button" (click)="invite(friend);">Zaproś</button>
+							<button class="decision-button" (click)="userProfile(friend.id);">Zobacz profil</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

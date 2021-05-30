@@ -1,0 +1,23 @@
+mat-toolbar {
+	position: relative;
+	background-color: #07015a;
+	.menu{
+		margin: auto;
+		display: flex;
+		
+		
+	position: relative;
+		a {
+			margin: auto;			  
+						
+		}
+
+		a +a{
+			  margin-left: 60px;
+		}
+	}
+	
+  }
+#my_profile :hover{
+	cursor: pointer;
+}

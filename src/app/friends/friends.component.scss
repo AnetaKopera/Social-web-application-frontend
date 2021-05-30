@@ -1,0 +1,163 @@
+.allPage{
+	padding: 20px;
+	position: relative;
+	
+	.blue-button{
+		background-color: #07015a;
+		padding-left: 30px;
+		padding-right: 30px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		color: #ffffff;
+		border: none;
+		border-radius: 25px;
+		outline: none;
+	}
+	.decision{
+		margin-top: 20px;
+		.decision-button{
+			background-color: #07015a;
+			color: #ffffff;
+			outline: none;
+			border: none;
+			border-radius: 25px;
+			padding: 5px 10px 5px 10px;
+		}
+		.decision-button + .decision-button{
+			margin-left: 10px;
+		}
+		:hover{
+			cursor: pointer;
+		}
+	}
+	.user_menu{
+		margin: auto;
+		width: max-content;
+		height: max-content;
+		margin-top: 20px;
+		display: flex;
+		align-items: stretch;
+		
+		.normal{
+			align-items: center;
+			display: flex;
+			flex:1;
+			text-align: center;
+			padding: 10px;
+			text-decoration: none;
+			z-index: 1;
+		}
+		
+		.active{
+			align-items: center;
+			display: flex;
+			flex:1;
+			background-color: rgb(5, 5, 49);
+			color: white;
+			text-align: center;
+			padding: 10px;
+			text-decoration: none;
+			z-index: 1;		
+		}
+		* + * {
+			border-left: 1px solid #302f2d;
+		}
+		:hover{
+			background-color: #aea1fa;
+			cursor: pointer;
+			color: black;
+		}
+			
+	}
+
+		
+	.friends{
+		margin: auto;
+		position: relative;
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-column-gap: 20px;
+		width: 100%;
+		max-width: 1030px;
+
+		.friend{
+			border: 1px solid #696869;
+			margin-top: 20px;
+			padding: 20px;
+			position: relative;
+
+			.friend_photo{
+				display: flex;
+				width: 62px;
+				height: 62px;
+				background: linear-gradient(145.3deg, #DB1041 16.41%, #7F0793 50.94%, #063376 79.55%);
+				border-radius: 50%;
+				
+				img{
+					margin: auto;
+					object-fit: cover;
+					width: 54px;
+					height: 54px;
+					border: 2px solid #ffffff;
+					border-radius: 50%;	
+				}
+			}
+			.friend_name{
+				position: absolute;
+				top: 50px;
+				left: 100px;
+			}
+			
+			
+			.dropdown {
+				position: absolute;
+				display: inline-block;
+				top:50%;
+				right: 5px;
+				transform: translateY(-50%);
+				z-index: 1;
+				
+			}
+			  
+			.dropdown-content {
+				display: none;
+				position: absolute;
+				top:0px;
+				left: -160px;
+				background-color: #f1f1f1;
+				min-width: 160px;
+				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+				z-index: 1;
+			  }
+			  
+			  .dropdown-content .option {
+				color: black;
+				padding: 12px 16px;
+				text-decoration: none;
+				display: block;
+			  }
+			  
+			  .dropdown-content .option:hover {background-color: #ddd;}
+			  
+			  .dropdown:hover .dropdown-content {display: block;}
+			
+		}
+	}
+
+	.search{
+		
+		padding: 10px;
+		text-align: center;
+		width: 100%;
+		position: relative;
+		form{
+			margin: auto;
+			width: max-content;
+			padding: 10px;
+			border: 1px solid #302f2d;
+			border-radius: 5px;
+		}
+	}
+	
+	
+}
